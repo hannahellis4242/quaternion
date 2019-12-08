@@ -1,5 +1,5 @@
 mod real;
-mod imgi;
+mod imagi;
 
 /*pub struct VecI {
     value: f64,
