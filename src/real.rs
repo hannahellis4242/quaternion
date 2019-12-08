@@ -154,6 +154,13 @@ impl Div for &Real {
     }
 }
 
+use std::fmt;
+impl fmt::Display for Real {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}", self.value)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -269,5 +276,12 @@ mod tests {
             let r3 = &r1 / &r2;
             assert_eq!(r3.value, 0.4);
         }
+    }
+    #[test]
+    fn can_format()
+    {
+        let r = Real::new(3.0);
+        let s = format!("{}",r);
+        assert_eq!(s,"3");
     }
 }
