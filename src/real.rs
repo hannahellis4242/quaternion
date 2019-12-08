@@ -29,15 +29,15 @@ impl Add<Real> for &Real {
 
 impl Add<&Real> for Real {
     type Output = Real;
-    fn add(self, other: &Real) -> Real {
-        Real {
+    fn add(self, other: &Self) -> Self {
+        Self {
             value: self.value + other.value,
         }
     }
 }
 impl Add for &Real {
     type Output = Real;
-    fn add(self, other: &Real) -> Real {
+    fn add(self, other: Self) -> Real {
         Real {
             value: self.value + other.value,
         }
@@ -56,7 +56,7 @@ impl Sub for Real {
 
 impl Sub<&Real> for Real {
     type Output = Real;
-    fn sub(self, other: &Real) -> Self {
+    fn sub(self, other: &Self) -> Self {
         Self {
             value: self.value - other.value,
         }
@@ -101,8 +101,8 @@ impl Mul<Real> for &Real {
 
 impl Mul<&Real> for Real {
     type Output = Real;
-    fn mul(self, other: &Real) -> Real {
-        Real {
+    fn mul(self, other: &Self) -> Self {
+        Self {
             value: self.value * other.value,
         }
     }
@@ -113,6 +113,43 @@ impl Mul for &Real {
     fn mul(self, other: Self) -> Real {
         Real {
             value: self.value * other.value,
+        }
+    }
+}
+
+use std::ops::Div;
+impl Div for Real {
+    type Output = Real;
+    fn div(self, other: Self) -> Self {
+        Self {
+            value: self.value / other.value,
+        }
+    }
+}
+
+impl Div<Real> for &Real {
+    type Output = Real;
+    fn div(self, other: Real) -> Real {
+        Real {
+            value: self.value / other.value,
+        }
+    }
+}
+
+impl Div<&Real> for Real {
+    type Output = Self;
+    fn div(self, other: &Self) -> Self {
+        Self {
+            value: self.value / other.value,
+        }
+    }
+}
+
+impl Div for &Real {
+    type Output = Real;
+    fn div(self, other: Self) -> Real {
+        Real {
+            value: self.value / other.value,
         }
     }
 }
@@ -204,6 +241,33 @@ mod tests {
             let r2 = Real::new(3.0);
             let r3 = &r1 * &r2;
             assert_eq!(r3.value, 6.0);
+        }
+    }
+    #[test]
+    fn can_divide_two_reals() {
+        {
+            let r1 = Real::new(2.0);
+            let r2 = Real::new(5.0);
+            let r3 = r1 / r2;
+            assert_eq!(r3.value, 0.4);
+        }
+        {
+            let r1 = Real::new(2.0);
+            let r2 = Real::new(5.0);
+            let r3 = &r1 / r2;
+            assert_eq!(r3.value, 0.4);
+        }
+        {
+            let r1 = Real::new(2.0);
+            let r2 = Real::new(5.0);
+            let r3 = r1 / &r2;
+            assert_eq!(r3.value, 0.4);
+        }
+        {
+            let r1 = Real::new(2.0);
+            let r2 = Real::new(5.0);
+            let r3 = &r1 / &r2;
+            assert_eq!(r3.value, 0.4);
         }
     }
 }
