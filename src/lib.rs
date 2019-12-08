@@ -1,6 +1,7 @@
 mod real;
 mod imagi;
 mod imagj;
+mod imagk;
 
 /*pub struct VecI {
     value: f64,
