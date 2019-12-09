@@ -1,9 +1,9 @@
 pub struct Real {
-    value: f64,
+    pub value: f64,
 }
 
 impl Real {
-    fn new(x: f64) -> Real {
+    pub fn new(x: f64) -> Real {
         Real { value: x }
     }
 }

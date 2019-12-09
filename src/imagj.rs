@@ -169,12 +169,12 @@ impl fmt::Display for ImagJ {
 mod tests {
     use super::*;
     #[test]
-    fn new_ImagJ_works() {
+    fn new_imag_j_works() {
         let r = ImagJ::new(1.0);
         assert_eq!(r.value, 1.0);
     }
     #[test]
-    fn can_add_two_ImagJs() {
+    fn can_add_two_imag_js() {
         {
             let i1 = ImagJ::new(1.0);
             let i2 = ImagJ::new(2.0);
@@ -201,7 +201,7 @@ mod tests {
         }
     }
     #[test]
-    fn can_subtract_two_ImagJs() {
+    fn can_subtract_two_imag_js() {
         {
             let i1 = ImagJ::new(1.0);
             let i2 = ImagJ::new(2.0);
@@ -228,7 +228,7 @@ mod tests {
         }
     }
     #[test]
-    fn can_multiply_two_ImagJs() {
+    fn can_multiply_two_imag_js() {
         {
             let i1 = ImagJ::new(2.0);
             let i2 = ImagJ::new(3.0);
@@ -255,7 +255,7 @@ mod tests {
         }
     }
     #[test]
-    fn can_divide_two_ImagJs() {
+    fn can_divide_two_imag_js() {
         {
             let i1 = ImagJ::new(2.0);
             let i2 = ImagJ::new(5.0);

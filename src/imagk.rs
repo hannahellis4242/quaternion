@@ -169,12 +169,12 @@ impl fmt::Display for ImagK {
 mod tests {
     use super::*;
     #[test]
-    fn new_ImagK_works() {
+    fn new_imag_k_works() {
         let r = ImagK::new(1.0);
         assert_eq!(r.value, 1.0);
     }
     #[test]
-    fn can_add_two_ImagKs() {
+    fn can_add_two_imag_ks() {
         {
             let i1 = ImagK::new(1.0);
             let i2 = ImagK::new(2.0);
@@ -201,7 +201,7 @@ mod tests {
         }
     }
     #[test]
-    fn can_subtract_two_ImagKs() {
+    fn can_subtract_two_imag_ks() {
         {
             let i1 = ImagK::new(1.0);
             let i2 = ImagK::new(2.0);
@@ -228,7 +228,7 @@ mod tests {
         }
     }
     #[test]
-    fn can_multiply_two_ImagKs() {
+    fn can_multiply_two_imag_ks() {
         {
             let i1 = ImagK::new(2.0);
             let i2 = ImagK::new(3.0);
@@ -255,7 +255,7 @@ mod tests {
         }
     }
     #[test]
-    fn can_divide_two_ImagKs() {
+    fn can_divide_two_imag_ks() {
         {
             let i1 = ImagK::new(2.0);
             let i2 = ImagK::new(5.0);

@@ -1,9 +1,9 @@
 pub struct ImagI {
-    value: f64,
+    pub value: f64,
 }
 
 impl ImagI {
-    fn new(x: f64) -> ImagI {
+    pub fn new(x: f64) -> ImagI {
         ImagI { value: x }
     }
 }
@@ -169,12 +169,12 @@ impl fmt::Display for ImagI {
 mod tests {
     use super::*;
     #[test]
-    fn new_ImagI_works() {
+    fn new_imag_i_works() {
         let r = ImagI::new(1.0);
         assert_eq!(r.value, 1.0);
     }
     #[test]
-    fn can_add_two_ImagIs() {
+    fn can_add_two_imag_is() {
         {
             let i1 = ImagI::new(1.0);
             let i2 = ImagI::new(2.0);
@@ -201,7 +201,7 @@ mod tests {
         }
     }
     #[test]
-    fn can_subtract_two_ImagIs() {
+    fn can_subtract_two_imag_is() {
         {
             let i1 = ImagI::new(1.0);
             let i2 = ImagI::new(2.0);
@@ -228,7 +228,7 @@ mod tests {
         }
     }
     #[test]
-    fn can_multiply_two_ImagIs() {
+    fn can_multiply_two_imag_is() {
         {
             let i1 = ImagI::new(2.0);
             let i2 = ImagI::new(3.0);
@@ -255,7 +255,7 @@ mod tests {
         }
     }
     #[test]
-    fn can_divide_two_ImagIs() {
+    fn can_divide_two_imag_is() {
         {
             let i1 = ImagI::new(2.0);
             let i2 = ImagI::new(5.0);
