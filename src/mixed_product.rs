@@ -184,6 +184,42 @@ impl Mul<&imagj::ImagJ> for &imagi::ImagI {
     }
 }
 
+impl Mul<imagk::ImagK> for imagi::ImagI {
+    type Output = imagj::ImagJ;
+    fn mul(self, other: imagk::ImagK) -> imagj::ImagJ {
+        imagj::ImagJ {
+            value: -self.value * other.value,
+        }
+    }
+}
+
+impl Mul<&imagk::ImagK> for imagi::ImagI {
+    type Output = imagj::ImagJ;
+    fn mul(self, other: &imagk::ImagK) -> imagj::ImagJ {
+        imagj::ImagJ {
+            value: -self.value * other.value,
+        }
+    }
+}
+
+impl Mul<imagk::ImagK> for &imagi::ImagI {
+    type Output = imagj::ImagJ;
+    fn mul(self, other: imagk::ImagK) -> imagj::ImagJ {
+        imagj::ImagJ {
+            value: -self.value * other.value,
+        }
+    }
+}
+
+impl Mul<&imagk::ImagK> for &imagi::ImagI {
+    type Output = imagj::ImagJ;
+    fn mul(self, other: &imagk::ImagK) -> imagj::ImagJ {
+        imagj::ImagJ {
+            value: -self.value * other.value,
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -324,6 +360,34 @@ mod tests {
             let b = imagj::ImagJ::new(3.0);
             let c = &a * &b;
             assert_eq!(format!("{}", c), "+6k");
+        }
+    }
+
+    #[test]
+    fn first_multiply_third() {
+        {
+            let a = imagi::ImagI::new(2.0);
+            let b = imagk::ImagK::new(3.0);
+            let c = a * b;
+            assert_eq!(format!("{}", c), "-6j");
+        }
+        {
+            let a = imagi::ImagI::new(2.0);
+            let b = imagk::ImagK::new(3.0);
+            let c = a * &b;
+            assert_eq!(format!("{}", c), "-6j");
+        }
+        {
+            let a = imagi::ImagI::new(2.0);
+            let b = imagk::ImagK::new(3.0);
+            let c = &a * b;
+            assert_eq!(format!("{}", c), "-6j");
+        }
+        {
+            let a = imagi::ImagI::new(2.0);
+            let b = imagk::ImagK::new(3.0);
+            let c = &a * &b;
+            assert_eq!(format!("{}", c), "-6j");
         }
     }
 }
