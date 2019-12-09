@@ -278,10 +278,9 @@ mod tests {
         }
     }
     #[test]
-    fn can_format()
-    {
+    fn can_format() {
         let r = Real::new(3.0);
-        let s = format!("{}",r);
-        assert_eq!(s,"3");
+        let s = format!("{}", r);
+        assert_eq!(s, "3");
     }
 }

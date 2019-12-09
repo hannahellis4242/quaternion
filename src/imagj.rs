@@ -80,9 +80,9 @@ impl Sub for &ImagJ {
     }
 }
 
-use super::real;
 use super::imagi;
 use super::imagk;
+use super::real;
 use std::ops::Mul;
 impl Mul for ImagJ {
     type Output = real::Real;
@@ -345,28 +345,28 @@ mod tests {
             let i2 = ImagJ::new(3.0);
             let i3 = i1 * i2;
             assert_eq!(i3.value, -6.0);
-            assert_eq!(format!("{}",i3), "-6");
+            assert_eq!(format!("{}", i3), "-6");
         }
         {
             let i1 = ImagJ::new(2.0);
             let i2 = ImagJ::new(3.0);
             let i3 = &i1 * i2;
             assert_eq!(i3.value, -6.0);
-            assert_eq!(format!("{}",i3), "-6");
+            assert_eq!(format!("{}", i3), "-6");
         }
         {
             let i1 = ImagJ::new(2.0);
             let i2 = ImagJ::new(3.0);
             let i3 = i1 * &i2;
             assert_eq!(i3.value, -6.0);
-            assert_eq!(format!("{}",i3), "-6");
+            assert_eq!(format!("{}", i3), "-6");
         }
         {
             let i1 = ImagJ::new(2.0);
             let i2 = ImagJ::new(3.0);
             let i3 = &i1 * &i2;
             assert_eq!(i3.value, -6.0);
-            assert_eq!(format!("{}",i3), "-6");
+            assert_eq!(format!("{}", i3), "-6");
         }
     }
     /*#[test]

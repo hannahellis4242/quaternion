@@ -81,9 +81,9 @@ impl Sub for &ImagI {
     }
 }
 
-use super::real;
 use super::imagj;
 use super::imagk;
+use super::real;
 use std::ops::Mul;
 impl Mul for ImagI {
     type Output = real::Real;

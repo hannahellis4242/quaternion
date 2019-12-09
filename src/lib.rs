@@ -1,8 +1,8 @@
-mod real;
 mod imagi;
 mod imagj;
 mod imagk;
 mod mixed_product;
+mod real;
 
 /*pub struct VecI {
     value: f64,
