@@ -220,34 +220,70 @@ impl Mul<&imagk::ImagK> for &imagi::ImagI {
     }
 }
 
+impl Mul<real::Real> for imagj::ImagJ {
+    type Output = imagj::ImagJ;
+    fn mul(self, other: real::Real) -> imagj::ImagJ {
+        imagj::ImagJ {
+            value: self.value * other.value,
+        }
+    }
+}
+
+impl Mul<&real::Real> for imagj::ImagJ {
+    type Output = imagj::ImagJ;
+    fn mul(self, other: &real::Real) -> imagj::ImagJ {
+        imagj::ImagJ {
+            value: self.value * other.value,
+        }
+    }
+}
+
+impl Mul<real::Real> for &imagj::ImagJ {
+    type Output = imagj::ImagJ;
+    fn mul(self, other: real::Real) -> imagj::ImagJ {
+        imagj::ImagJ {
+            value: self.value * other.value,
+        }
+    }
+}
+
+impl Mul<&real::Real> for &imagj::ImagJ {
+    type Output = imagj::ImagJ;
+    fn mul(self, other: &real::Real) -> imagj::ImagJ {
+        imagj::ImagJ {
+            value: self.value * other.value,
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
     #[test]
     fn real_multiply_first() {
         {
-            let r = real::Real::new(2.0);
-            let i = imagi::ImagI::new(3.0);
-            let z = r * i;
-            assert_eq!(format!("{}", z), "+6i");
+            let a = real::Real::new(2.0);
+            let b = imagi::ImagI::new(3.0);
+            let c = a * b;
+            assert_eq!(format!("{}", c), "+6i");
         }
         {
-            let r = real::Real::new(2.0);
-            let i = imagi::ImagI::new(3.0);
-            let z = r * &i;
-            assert_eq!(format!("{}", z), "+6i");
+            let a = real::Real::new(2.0);
+            let b = imagi::ImagI::new(3.0);
+            let c = a * &b;
+            assert_eq!(format!("{}", c), "+6i");
         }
         {
-            let r = real::Real::new(2.0);
-            let i = imagi::ImagI::new(3.0);
-            let z = &r * i;
-            assert_eq!(format!("{}", z), "+6i");
+            let a = real::Real::new(2.0);
+            let b = imagi::ImagI::new(3.0);
+            let c = &a * b;
+            assert_eq!(format!("{}", c), "+6i");
         }
         {
-            let r = real::Real::new(2.0);
-            let i = imagi::ImagI::new(3.0);
-            let z = &r * &i;
-            assert_eq!(format!("{}", z), "+6i");
+            let a = real::Real::new(2.0);
+            let b = imagi::ImagI::new(3.0);
+            let c = &a * &b;
+            assert_eq!(format!("{}", c), "+6i");
         }
     }
 
@@ -388,6 +424,34 @@ mod tests {
             let b = imagk::ImagK::new(3.0);
             let c = &a * &b;
             assert_eq!(format!("{}", c), "-6j");
+        }
+    }
+
+    #[test]
+    fn second_multiply_real() {
+        {
+            let a = imagj::ImagJ::new(2.0);
+            let b = real::Real::new(3.0);
+            let c = a * b;
+            assert_eq!(format!("{}", c), "+6j");
+        }
+        {
+            let a = imagj::ImagJ::new(2.0);
+            let b = real::Real::new(3.0);
+            let c = a * &b;
+            assert_eq!(format!("{}", c), "+6j");
+        }
+        {
+            let a = imagj::ImagJ::new(2.0);
+            let b = real::Real::new(3.0);
+            let c = &a * b;
+            assert_eq!(format!("{}", c), "+6j");
+        }
+        {
+            let a = imagj::ImagJ::new(2.0);
+            let b = real::Real::new(3.0);
+            let c = &a * &b;
+            assert_eq!(format!("{}", c), "+6j");
         }
     }
 }
