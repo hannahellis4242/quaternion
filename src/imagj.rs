@@ -80,44 +80,155 @@ impl Sub for &ImagJ {
     }
 }
 
+use super::real;
+use super::imagi;
+use super::imagk;
 use std::ops::Mul;
 impl Mul for ImagJ {
-    type Output = ImagJ;
-    fn mul(self, other: Self) -> Self {
-        Self {
-            value: self.value * other.value,
+    type Output = real::Real;
+    fn mul(self, other: Self) -> real::Real {
+        real::Real {
+            value: -self.value * other.value,
         }
     }
 }
 
 impl Mul<ImagJ> for &ImagJ {
-    type Output = ImagJ;
-    fn mul(self, other: ImagJ) -> ImagJ {
-        ImagJ {
-            value: self.value * other.value,
+    type Output = real::Real;
+    fn mul(self, other: ImagJ) -> real::Real {
+        real::Real {
+            value: -self.value * other.value,
         }
     }
 }
 
 impl Mul<&ImagJ> for ImagJ {
-    type Output = ImagJ;
-    fn mul(self, other: &Self) -> Self {
-        Self {
-            value: self.value * other.value,
+    type Output = real::Real;
+    fn mul(self, other: &Self) -> real::Real {
+        real::Real {
+            value: -self.value * other.value,
         }
     }
 }
 
 impl Mul for &ImagJ {
+    type Output = real::Real;
+    fn mul(self, other: Self) -> real::Real {
+        real::Real {
+            value: -self.value * other.value,
+        }
+    }
+}
+
+impl Mul<real::Real> for ImagJ {
     type Output = ImagJ;
-    fn mul(self, other: Self) -> ImagJ {
+    fn mul(self, other: real::Real) -> ImagJ {
         ImagJ {
             value: self.value * other.value,
         }
     }
 }
 
-use std::ops::Div;
+impl Mul<&real::Real> for ImagJ {
+    type Output = ImagJ;
+    fn mul(self, other: &real::Real) -> ImagJ {
+        ImagJ {
+            value: self.value * other.value,
+        }
+    }
+}
+
+impl Mul<real::Real> for &ImagJ {
+    type Output = ImagJ;
+    fn mul(self, other: real::Real) -> ImagJ {
+        ImagJ {
+            value: self.value * other.value,
+        }
+    }
+}
+
+impl Mul<&real::Real> for &ImagJ {
+    type Output = ImagJ;
+    fn mul(self, other: &real::Real) -> ImagJ {
+        ImagJ {
+            value: self.value * other.value,
+        }
+    }
+}
+
+impl Mul<imagi::ImagI> for ImagJ {
+    type Output = imagk::ImagK;
+    fn mul(self, other: imagi::ImagI) -> imagk::ImagK {
+        imagk::ImagK {
+            value: -self.value * other.value,
+        }
+    }
+}
+
+impl Mul<&imagi::ImagI> for ImagJ {
+    type Output = imagk::ImagK;
+    fn mul(self, other: &imagi::ImagI) -> imagk::ImagK {
+        imagk::ImagK {
+            value: -self.value * other.value,
+        }
+    }
+}
+
+impl Mul<imagi::ImagI> for &ImagJ {
+    type Output = imagk::ImagK;
+    fn mul(self, other: imagi::ImagI) -> imagk::ImagK {
+        imagk::ImagK {
+            value: -self.value * other.value,
+        }
+    }
+}
+
+impl Mul<&imagi::ImagI> for &ImagJ {
+    type Output = imagk::ImagK;
+    fn mul(self, other: &imagi::ImagI) -> imagk::ImagK {
+        imagk::ImagK {
+            value: -self.value * other.value,
+        }
+    }
+}
+
+impl Mul<imagk::ImagK> for ImagJ {
+    type Output = imagi::ImagI;
+    fn mul(self, other: imagk::ImagK) -> imagi::ImagI {
+        imagi::ImagI {
+            value: self.value * other.value,
+        }
+    }
+}
+
+impl Mul<&imagk::ImagK> for ImagJ {
+    type Output = imagi::ImagI;
+    fn mul(self, other: &imagk::ImagK) -> imagi::ImagI {
+        imagi::ImagI {
+            value: self.value * other.value,
+        }
+    }
+}
+
+impl Mul<imagk::ImagK> for &ImagJ {
+    type Output = imagi::ImagI;
+    fn mul(self, other: imagk::ImagK) -> imagi::ImagI {
+        imagi::ImagI {
+            value: self.value * other.value,
+        }
+    }
+}
+
+impl Mul<&imagk::ImagK> for &ImagJ {
+    type Output = imagi::ImagI;
+    fn mul(self, other: &imagk::ImagK) -> imagi::ImagI {
+        imagi::ImagI {
+            value: self.value * other.value,
+        }
+    }
+}
+
+/*use std::ops::Div;
 impl Div for ImagJ {
     type Output = ImagJ;
     fn div(self, other: Self) -> Self {
@@ -152,7 +263,7 @@ impl Div for &ImagJ {
             value: self.value / other.value,
         }
     }
-}
+}*/
 
 use std::fmt;
 impl fmt::Display for ImagJ {
@@ -233,28 +344,32 @@ mod tests {
             let i1 = ImagJ::new(2.0);
             let i2 = ImagJ::new(3.0);
             let i3 = i1 * i2;
-            assert_eq!(i3.value, 6.0);
+            assert_eq!(i3.value, -6.0);
+            assert_eq!(format!("{}",i3), "-6");
         }
         {
             let i1 = ImagJ::new(2.0);
             let i2 = ImagJ::new(3.0);
             let i3 = &i1 * i2;
-            assert_eq!(i3.value, 6.0);
+            assert_eq!(i3.value, -6.0);
+            assert_eq!(format!("{}",i3), "-6");
         }
         {
             let i1 = ImagJ::new(2.0);
             let i2 = ImagJ::new(3.0);
             let i3 = i1 * &i2;
-            assert_eq!(i3.value, 6.0);
+            assert_eq!(i3.value, -6.0);
+            assert_eq!(format!("{}",i3), "-6");
         }
         {
             let i1 = ImagJ::new(2.0);
             let i2 = ImagJ::new(3.0);
             let i3 = &i1 * &i2;
-            assert_eq!(i3.value, 6.0);
+            assert_eq!(i3.value, -6.0);
+            assert_eq!(format!("{}",i3), "-6");
         }
     }
-    #[test]
+    /*#[test]
     fn can_divide_two_imag_js() {
         {
             let i1 = ImagJ::new(2.0);
@@ -280,7 +395,7 @@ mod tests {
             let i3 = &i1 / &i2;
             assert_eq!(i3.value, 0.4);
         }
-    }
+    }*/
     #[test]
     fn can_format() {
         {
@@ -292,6 +407,90 @@ mod tests {
             let r = ImagJ::new(-3.0);
             let s = format!("{}", r);
             assert_eq!(s, "-3j");
+        }
+    }
+
+    #[test]
+    fn second_multiply_real() {
+        {
+            let a = ImagJ::new(2.0);
+            let b = real::Real::new(3.0);
+            let c = a * b;
+            assert_eq!(format!("{}", c), "+6j");
+        }
+        {
+            let a = ImagJ::new(2.0);
+            let b = real::Real::new(3.0);
+            let c = a * &b;
+            assert_eq!(format!("{}", c), "+6j");
+        }
+        {
+            let a = ImagJ::new(2.0);
+            let b = real::Real::new(3.0);
+            let c = &a * b;
+            assert_eq!(format!("{}", c), "+6j");
+        }
+        {
+            let a = ImagJ::new(2.0);
+            let b = real::Real::new(3.0);
+            let c = &a * &b;
+            assert_eq!(format!("{}", c), "+6j");
+        }
+    }
+
+    #[test]
+    fn second_multiply_first() {
+        {
+            let a = ImagJ::new(2.0);
+            let b = imagi::ImagI::new(3.0);
+            let c = a * b;
+            assert_eq!(format!("{}", c), "-6k");
+        }
+        {
+            let a = ImagJ::new(2.0);
+            let b = imagi::ImagI::new(3.0);
+            let c = a * &b;
+            assert_eq!(format!("{}", c), "-6k");
+        }
+        {
+            let a = ImagJ::new(2.0);
+            let b = imagi::ImagI::new(3.0);
+            let c = &a * b;
+            assert_eq!(format!("{}", c), "-6k");
+        }
+        {
+            let a = ImagJ::new(2.0);
+            let b = imagi::ImagI::new(3.0);
+            let c = &a * &b;
+            assert_eq!(format!("{}", c), "-6k");
+        }
+    }
+
+    #[test]
+    fn second_multiply_third() {
+        {
+            let a = ImagJ::new(2.0);
+            let b = imagk::ImagK::new(3.0);
+            let c = a * b;
+            assert_eq!(format!("{}", c), "+6i");
+        }
+        {
+            let a = ImagJ::new(2.0);
+            let b = imagk::ImagK::new(3.0);
+            let c = a * &b;
+            assert_eq!(format!("{}", c), "+6i");
+        }
+        {
+            let a = ImagJ::new(2.0);
+            let b = imagk::ImagK::new(3.0);
+            let c = &a * b;
+            assert_eq!(format!("{}", c), "+6i");
+        }
+        {
+            let a = ImagJ::new(2.0);
+            let b = imagk::ImagK::new(3.0);
+            let c = &a * &b;
+            assert_eq!(format!("{}", c), "+6i");
         }
     }
 }
