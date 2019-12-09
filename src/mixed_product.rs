@@ -328,6 +328,42 @@ impl Mul<&imagk::ImagK> for &imagj::ImagJ {
     }
 }
 
+impl Mul<real::Real> for imagk::ImagK {
+    type Output = imagk::ImagK;
+    fn mul(self, other: real::Real) -> imagk::ImagK {
+        imagk::ImagK {
+            value: self.value * other.value,
+        }
+    }
+}
+
+impl Mul<&real::Real> for imagk::ImagK {
+    type Output = imagk::ImagK;
+    fn mul(self, other: &real::Real) -> imagk::ImagK {
+        imagk::ImagK {
+            value: self.value * other.value,
+        }
+    }
+}
+
+impl Mul<real::Real> for &imagk::ImagK {
+    type Output = imagk::ImagK;
+    fn mul(self, other: real::Real) -> imagk::ImagK {
+        imagk::ImagK {
+            value: self.value * other.value,
+        }
+    }
+}
+
+impl Mul<&real::Real> for &imagk::ImagK {
+    type Output = imagk::ImagK;
+    fn mul(self, other: &real::Real) -> imagk::ImagK {
+        imagk::ImagK {
+            value: self.value * other.value,
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -580,6 +616,34 @@ mod tests {
             let b = imagk::ImagK::new(3.0);
             let c = &a * &b;
             assert_eq!(format!("{}", c), "+6i");
+        }
+    }
+
+    #[test]
+    fn third_multiply_real() {
+        {
+            let a = imagk::ImagK::new(2.0);
+            let b = real::Real::new(3.0);
+            let c = a * b;
+            assert_eq!(format!("{}", c), "+6k");
+        }
+        {
+            let a = imagk::ImagK::new(2.0);
+            let b = real::Real::new(3.0);
+            let c = a * &b;
+            assert_eq!(format!("{}", c), "+6k");
+        }
+        {
+            let a = imagk::ImagK::new(2.0);
+            let b = real::Real::new(3.0);
+            let c = &a * b;
+            assert_eq!(format!("{}", c), "+6k");
+        }
+        {
+            let a = imagk::ImagK::new(2.0);
+            let b = real::Real::new(3.0);
+            let c = &a * &b;
+            assert_eq!(format!("{}", c), "+6k");
         }
     }
 }
