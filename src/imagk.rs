@@ -1,9 +1,9 @@
 pub struct ImagK {
-    value: f64,
+    pub value: f64,
 }
 
 impl ImagK {
-    fn new(x: f64) -> ImagK {
+    pub fn new(x: f64) -> ImagK {
         ImagK { value: x }
     }
 }
